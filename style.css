@@ -1,0 +1,9 @@
+h1 {
+    display: inline-block;
+}
+
+.header a {
+    float: right;
+    margin: 5px;
+    color: wheat;
+}

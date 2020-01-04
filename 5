@@ -1,0 +1,59 @@
+1.Membuat Database Inventory
+CREATE DATABASE inventory;
+
+2.Membuat Table Suppliers
+CREATE TABLE suppliers_tb (
+    -> id INT NOT NULL AUTO_INCREMENT,
+    -> company_name VARCHAR(45) NOT NULL,
+    -> address TEXT,
+    -> phone INT,
+    -> PRIMARY KEY (id)
+    -> );
+
+3.Membuat Table Products
+CREATE TABLE products_tb (
+    -> id INT NOT NULL AUTO_INCREMENT,
+    -> product_name VARCHAR(45),
+    -> supplier_id INT,
+    -> INDEX (supplier_id),
+    -> FOREIGN KEY (supplier_id) REFERENCES suppliers_tb (id)
+    -> ON DELETE RESTRICT ON UPDATE CASCADE,
+    -> PRIMARY KEY (id));
+
+4.Menampilkan Spesifikasi Suppliers
+DESC suppliers_tb;
+5.Menampilkan Spesifikasi Products
+DESC products_tb
+
+6.Tambah 2 Data suppliers_tb
+INSERT INTO suppliers_tb VALUES (Null,"PT.Mejik","Jl Wonderland",086921692169),
+    -> (Null,"PT.Sera","Jl.Nusakambangan",082169216921);
+
+7.Menampilkan Seluruh data Suppliers
+SELECT * FROM suppliers_tb;
+
+8.Menambahkan 3 data kedalam products_tb
+INSERT INTO products_tb VALUES
+    -> (null,"Lenovo Ideal Pad",3),
+    -> (null,"Razer Blade Stealth",4),
+    -> (null,"Lenovo Thinkpad T420",3);
+    
+9.Menampilkan Seluruh data products_tb
+SELECT * FROM products_tb;
+
+10.Menampilkan Seluruh products yang dimiliki PT.Dumbways
+SELECT product_name,company_name FROM products_tb INNER JOIN suppliers_tb
+    -> ON products_tb.supplier_id = suppliers_tb.id WHERE company_name = "PT.Dumbways";
+
+11. Mengubah 2 data didalam products_tb
+UPDATE products_tb SET product_name = 'Acer Swift' WHERE id = 5;
+UPDATE products_tb SET product_name = 'MSI GL61' WHERE id = 7;
+
+12.Gabungkan 2 Table Supplier berada di kanan dan Products berada dikiri
+SELECT * FROM products_tb LEFT JOIN suppliers_tb
+    -> ON products_tb.supplier_id = suppliers_tb.id;
+
+13.Ubah data Supplier 
+UPDATE products_tb SET product_name = "Acer Nitro" WHERE id = 3;
+
+Fotonya saya sudah urut di folder 5ScreenShot
